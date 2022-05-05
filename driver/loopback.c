@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "util.h"
 #include "net.h"
@@ -96,7 +97,8 @@ loopback_init(void)
     dev->mtu = LOOPBACK_MTU;
     dev->hlen = 0; /* non header */
     dev->alen = 0; /* non address */
-    dev->flags = &loopback_ops;
+    dev->flags = NET_DEVICE_FLAG_LOOPBACK;
+    dev->ops = &loopback_ops;
     if (net_device_register(dev) == -1) {
         errorf("net_device_register() failure");
         return NULL;
