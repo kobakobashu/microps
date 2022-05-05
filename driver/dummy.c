@@ -1,8 +1,9 @@
+#include <stddef.h>
 #include <stdio.h>
 #include <stdint.h>
 
-#include "net.h"
 #include "util.h"
+#include "net.h"
 
 #define DUMMY_MTU UINT16_MAX
 
@@ -19,9 +20,6 @@ static struct net_device_ops dummy_ops = {
     .transmit = dummy_transmit,
 };
 
-struct net_device* net_device_alloc(void);
-int net_device_register(struct net_device *dev);
-
 struct net_device *
 dummy_init(void)
 {
@@ -37,7 +35,6 @@ dummy_init(void)
     dev->hlen = 0; /* non header */
     dev->alen = 0; /* non address */
     dev->ops = &dummy_ops;
-    errorf("aaaa");
     if (net_device_register(dev) == -1) {
         errorf("net_device_register() failure");
         return NULL;
