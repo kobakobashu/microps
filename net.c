@@ -42,7 +42,7 @@ net_device_alloc(void)
 int
 net_device_register(struct net_device *dev)
 {
-    static unsigned int index = 0;
+    static unsigned int index = 1;
 
     dev->index = index++;
     snprintf(dev->name, sizeof(dev->name), "net%d", dev->index);
