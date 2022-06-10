@@ -7,6 +7,7 @@
 #include "ip.h"
 #include "util.h"
 #include "net.h"
+#include "icmp.h"
 
 
 /* NOTE: if you want to add/delete the entries after net_run(), you need to protect these lists with a mutex. */
@@ -262,5 +263,7 @@ net_init(void)
         return -1;
     }
     infof("initialized");
+
+    icmp_init();
     return 0;
 }
